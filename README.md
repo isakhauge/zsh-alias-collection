@@ -1,2 +1,1 @@
-# oh-my-zsh
-Oh My ZSH Config
+# Oh My ZSH Configurations
