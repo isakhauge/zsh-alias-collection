@@ -2,7 +2,7 @@
 ### ZSH
 ##############################
 alias zshc="micro ~/.zshrc"
-alias zshu="source ~/.zshrc && echo 'ZSH Profile Updated ✨'"
+alias zshu="source ~/.zshrc && clear && echo 'ZSH Profile Updated ✨'"
 
 ##############################
 ### APT
@@ -47,9 +47,9 @@ alias gre="git restore"
 alias grh="git reset --hard"
 # Reset soft
 alias grs="git reset --soft"
-# Git commit
+# Commit
 alias gcom="git commit --allow-empty -m\"$*\""
-# Git commit amend
+# Commit amend
 alias gcoma="git commit --allow-empty --amend -m\"$*\""
 
 ##############################
@@ -77,53 +77,3 @@ alias nrw="npm run watch"
 alias yw="yarn watch"
 alias yiw="yarn install && yarn watch"
 alias yid="yarn install && yarn dev"
-
-# Codespace Directory
-alias cs="cd /codespace"
-
-# Famac Documents
-alias fdoc="cd ~/fwdoc"
-
-# Famac Directories
-alias fw="cd /codespace/famac-web-server"
-
-# Famac: Start containers
-function fu()
-{
-	temp=$(pwd)
-	cd /codespace/laradock
-	echo "🛸 Launching the Famacweb containers ..."
-	docker-compose up \
-		-d \
-		--force-recreate \
-		--renew-anon-volumes \
-		--remove-orphans \
-		apache2 mysql php-fpm
-	cd $temp
-}
-
-# Famac: Shutdown containers
-function fd()
-{
-	temp=$(pwd)
-	cd /codespace/laradock
-	echo "🌒 Gracefully shutting down the Famacweb containers ..."
-	docker-compose down \
-		--remove-orphans
-	cd $temp
-}
-
-# Famac Rebuild Containers
-function fb()
-{
-	temp=$(pwd)                                                                                                                                                                                                                                                                                                     
-	cd /codespace/laradock                                                                                                                                                                                                                                                                                          
-	echo "⚙ Rebuilding Famacweb ..."
-	for i in image container volume network; do docker $i prune; done;
-	dcb apache2 mysql php-fpm
-	cd $temp
-}
-
-clear
-echo "✨ Custom ZSH profile loaded ✨"
-echo "Welcome, master Isak 🧠"
