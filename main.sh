@@ -4,7 +4,7 @@
 
 ### ZSH ######################
 alias zshc="micro ~/.zshrc"
-alias zshu="omz update && clear && echo 'OMZ Updated ✨'"
+alias zshu="omz reload && clear && echo 'OMZ Updated ✨'"
 
 ### Shell ####################
 alias c="clear"
@@ -33,10 +33,6 @@ alias gre="git restore"
 alias grh="git reset --hard"
 # Reset soft
 alias grs="git reset --soft"
-# Commit
-alias gcom="git commit --allow-empty -m\"$*\""
-# Commit amend
-alias gcoma="git commit --allow-empty --amend -m\"$*\""
 
 ### Git (Jira) ###############
 # These functions require that the issue code is in the branch name.
@@ -53,10 +49,12 @@ alias dc="docker-compose $*"
 alias db="dc build $*"
 
 ### Yarn #####################
-alias yw="yarn watch"
-alias yd="yarn dev"
-alias yiw="yarn install && yarn watch"
-alias yid="yarn install && yarn dev"
+alias y="yarn"
+alias yi="y install"
+alias yw="y watch"
+alias yd="y dev"
+alias yiw="yi && yw"
+alias yid="yi && yd"
 
 ##############################
 ### Functions ################
@@ -64,6 +62,10 @@ alias yid="yarn install && yarn dev"
 
 ### Git ######################
 # Origin branch
+# Commit
+function gcom() { git commit --allow-empty -m"$*" }
+# Commit amend
+function gcoma() { git commit --allow-empty --amend -m"$*" }
 function gorig() { gcom "🌵 Branched out from: $*" }
 
 ### Git (Jira) ###############
