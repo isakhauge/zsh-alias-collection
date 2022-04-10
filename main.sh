@@ -19,7 +19,7 @@ alias gf="git fetch"
 # Fetch and pull
 alias gfl="gf && gl"
 # Clean file
-alias gx="git clean -f $*"
+alias gx="git clean -f"
 # Display current branch
 alias gcb="git branch --show-current"
 # Copy current branch into clipboard
@@ -43,11 +43,11 @@ alias gcbc="gcb | egrep -o -E '[A-Z]{1,4}\-[0-9]+'"
 alias gcbccp="gcbc | clipcopy"
 
 ### Micro Editor #############
-alias m="micro $*"
+alias m="micro"
 
 ### Docker ###################
-alias dc="docker-compose $*"
-alias db="dc build $*"
+alias dc="docker-compose"
+alias db="dc build"
 
 ### Yarn #####################
 alias y="yarn"
