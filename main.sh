@@ -9,6 +9,7 @@ alias zshu="omz reload && clear && echo 'OMZ Updated ✨'"
 ### Shell ####################
 alias c="clear"
 alias h="cd ~/"
+alias pwdcp="pwd | pbcopy"
 
 ### Git ######################
 # Pull
@@ -56,6 +57,13 @@ alias yd="y dev"
 alias yiw="yi && yw"
 alias yid="yi && yd"
 
+# Homebrew
+alias b="brew"
+alias bs="b services"
+alias binfo="b info"
+alias bin="b install"
+alias bun="b uninstall"
+
 ##############################
 ### Functions ################
 ##############################
@@ -74,3 +82,11 @@ function gorig() { gcom "🌵 Branched out from: $*" }
 function gcomc() { gcom "$(gcbc): $*" }
 # Commit amend with prepended Jira code
 function gcomac() { gcoma "$(gcbc): $*" }
+
+### Homebrew #################
+function bsr()
+{
+    for i in $@
+    do brew services restart $i
+    done
+}
