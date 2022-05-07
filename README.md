@@ -13,3 +13,8 @@ echo "source \"$HOME/zsh-alias-collection/main.sh\"" >> $HOME/.zshrc
 A small list of CLI tools used in this collection.
 * Oh My ZSH
 * Micro editor
+* Git
+* Docker
+* Docker Compose
+* Yarn
+* Homebrew
