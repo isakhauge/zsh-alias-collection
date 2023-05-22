@@ -16,7 +16,7 @@ alias pwdcp="pwd | pbcopy"
 # Git
 alias g="git"
 # Pull
-alias gl="g pull --merge"
+alias gl="g pull origin"
 # Fetch
 alias gf="g fetch"
 # Fetch and pull
@@ -32,7 +32,7 @@ alias gh="g rev-parse --short HEAD"
 # Copy current commit HEAD hash (short)
 alias ghcp="gh | clipcopy"
 # Restore
-alias grest="g restore"
+alias grestore="g restore"
 # Reset hard
 alias grh="g reset --hard"
 # Reset soft
@@ -61,10 +61,12 @@ alias db="dc build"
 ### Yarn #####################
 alias y="yarn"
 alias yi="y install"
+alias ya="y add"
 alias yw="y watch"
 alias yd="y dev"
 alias yiw="yi && yw"
 alias yid="yi && yd"
+alias yb="y build"
 
 # Homebrew
 alias b="brew"
@@ -92,8 +94,17 @@ alias mysql_slow_log="tail -f /opt/homebrew/var/log/mysql/mysql_slow_queries.log
 function gcom() { git commit --allow-empty -m"$*"; }
 # Commit amend
 function gcoma() { git commit --allow-empty --amend -m"$*"; }
-function gorig() { gcom "🌵 Branched out from: $*"; }
-function gnewb() { git checkout $1 && git fetch && git pull && git checkout -b $2; }
+function gorig() { gcom "🪴  Branched out from: $*"; }
+# gnewb <origin> <destination>
+function gnewb()
+{
+	git checkout $1
+	git fetch
+	git pull --rebase
+	git checkout -b $2
+	gorig $1
+	echo "The new branch $2 is ready ✅"
+}
 
 ### Git (Jira) ###############
 # These functions require that the issue code is in the branch name.
@@ -113,6 +124,9 @@ function bsr()
 ### Composer #################
 alias ci="composer install"
 alias cu="composer update"
+alias php74="/opt/homebrew/opt/php@7.4/bin/php"
+alias ci74="php74 $(which composer) install"
+alias cu74="php74 $(which composer) update"
 
 ### Famac ####################
 function logger()
@@ -123,3 +137,12 @@ function logger()
     echo "" >> $LOGGER_PATH
     tail -f $LOGGER_PATH
 }
+
+### SSH (TB1/TB2) ############
+HOST_TB1="fdvhuset-be-tb1.vdc.no"
+HOST_TB2="fdvhuset-be-tb2.vdc.no"
+HOST_TB3="fdvhuset-tb3.vdc.no"
+alias tb1="ssh isak@$HOST_TB1"
+alias tb2="ssh isak@$HOST_TB2"
+alias tb3="ssh isak@$HOST_TB3"
+alias tb1_api="tb1;sudo su -;cd /data/web/apifamacweb/api.famacweb/current;"
